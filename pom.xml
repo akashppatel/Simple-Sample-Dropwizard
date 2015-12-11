@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <dropwizard.version>0.8.2</dropwizard.version>
+        <dropwizard.version>0.9.0</dropwizard.version>
     </properties>
     
     <dependencies>
@@ -36,6 +36,23 @@
             <artifactId>dropwizard-auth</artifactId>
             <version>${dropwizard.version}</version>
         </dependency>      
+        <dependency>
+            <groupId>com.stansvec</groupId>
+            <artifactId>dropwizard-authorization</artifactId>
+            <version>0.1.4</version>
+        </dependency>
+		<!--         JWT -->
+		 <dependency>
+            <groupId>com.github.toastshaman</groupId>
+            <artifactId>dropwizard-auth-jwt</artifactId>
+            <version>0.9.1-1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>io.dropwizard</groupId>
+					<artifactId>dropwizard-auth</artifactId>
+				</exclusion>
+			</exclusions>
+        </dependency>
     </dependencies>
     
     <build>
@@ -67,13 +84,13 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.akashpatel.dropwizard.dropwizard.AppApplication</mainClass>
+                                    <mainClass>org.akashpatel.dropwizard.jwt.auth.JwtAuthApplication</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>        
+            </plugin>       
         
             <!--plugin>
                 <groupId>org.apache.maven.plugins</groupId>
